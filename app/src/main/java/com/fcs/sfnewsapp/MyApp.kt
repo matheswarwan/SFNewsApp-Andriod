@@ -146,11 +146,11 @@ class MyApp : Application() {
         const val TAG = "MyApp"
         const val MARKETING_CHANNEL_ID = "marketing_default"
 
-        const val SFMC_APP_ID = "YOUR_SFMC_APP_ID"
-        const val SFMC_ACCESS_TOKEN = "YOUR_SFMC_ACCESS_TOKEN"
-        const val FCM_SENDER_ID = "YOUR_FCM_SENDER_ID"
-        const val SFMC_SERVER_URL = "https://YOUR_SUBDOMAIN.device.marketingcloudapis.com/"
-        const val SFMC_MID = ""
+        val SFMC_APP_ID = BuildConfig.SFMC_APP_ID
+        val SFMC_ACCESS_TOKEN = BuildConfig.SFMC_ACCESS_TOKEN
+        val FCM_SENDER_ID = BuildConfig.FCM_SENDER_ID
+        val SFMC_SERVER_URL = BuildConfig.SFMC_SERVER_URL
+        val SFMC_MID = BuildConfig.SFMC_MID
         const val DEFAULT_DEEP_LINK = "sfnews://app"
     }
 }

@@ -441,6 +441,7 @@ sfnews://app/product/weather
 ## 15. Enterprise Implementation Notes
 
 - Store secrets/config outside source control when possible.
+- Put local SFMC values in ignored `sfmc.properties` and inject them through `BuildConfig`.
 - Use environment-specific Firebase and SFMC configs.
 - Align contact key strategy with the identity provider.
 - Use stable SFMC attribute names.

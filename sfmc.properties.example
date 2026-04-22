@@ -1,0 +1,5 @@
+sfmcAppId=YOUR_SFMC_APP_ID
+sfmcAccessToken=YOUR_SFMC_ACCESS_TOKEN
+fcmSenderId=YOUR_FCM_SENDER_ID
+sfmcServerUrl=https://YOUR_SUBDOMAIN.device.marketingcloudapis.com/
+sfmcMid=

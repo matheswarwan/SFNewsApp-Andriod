@@ -38,6 +38,8 @@ SFMC SDK `8.2.0` is intentionally used because the requested project constraints
 
 `MyApp` creates notification channel `marketing_default`. SFMC values are placeholders in Git and must be replaced locally with App ID, Access Token, FCM Sender ID, app endpoint, and MID if required. MID is skipped when blank. After SFMC initializes successfully, it persists `contact_key`, sets identity profile fields, adds the `general` tag, and syncs the current Firebase token to SFMC. `MyFirebaseMessagingService` forwards future token updates and lets SFMC handle Marketing Cloud messages before falling back to custom keys `deeplink`, `deepLink`, or `url`.
 
+SFMC local config now comes from ignored root file `sfmc.properties`; committed template is `sfmc.properties.example`. `app/build.gradle` injects those values into `BuildConfig`. If `sfmc.properties` is missing or contains placeholder values, `MyApp` skips SFMC initialization and Device Info remains at `Pending SFMC registration...`.
+
 `MainActivity` is a simple in-app router with Home, Device Info, Update Details, and product tile pages. Device Info shows SFMC/Firebase test identifiers: app contact key, FCM token, SFMC system token, SFMC device ID, and SFMC contact key. It has copy buttons for all identifiers and for each individual value.
 
 On Android 13+, `MainActivity` requests `POST_NOTIFICATIONS` at runtime so push notifications can display.

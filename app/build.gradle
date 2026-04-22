@@ -4,6 +4,16 @@ plugins {
     id "com.google.gms.google-services"
 }
 
+def sfmcPropertiesFile = rootProject.file("sfmc.properties")
+def sfmcProperties = new Properties()
+if (sfmcPropertiesFile.exists()) {
+    sfmcPropertiesFile.withInputStream { sfmcProperties.load(it) }
+}
+
+def sfmcValue = { String key, String fallback ->
+    return sfmcProperties.getProperty(key, fallback)
+}
+
 android {
     namespace "com.fcs.sfnewsapp"
     compileSdk 34
@@ -16,6 +26,12 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "SFMC_APP_ID", "\"${sfmcValue("sfmcAppId", "YOUR_SFMC_APP_ID")}\""
+        buildConfigField "String", "SFMC_ACCESS_TOKEN", "\"${sfmcValue("sfmcAccessToken", "YOUR_SFMC_ACCESS_TOKEN")}\""
+        buildConfigField "String", "FCM_SENDER_ID", "\"${sfmcValue("fcmSenderId", "YOUR_FCM_SENDER_ID")}\""
+        buildConfigField "String", "SFMC_SERVER_URL", "\"${sfmcValue("sfmcServerUrl", "https://YOUR_SUBDOMAIN.device.marketingcloudapis.com/")}\""
+        buildConfigField "String", "SFMC_MID", "\"${sfmcValue("sfmcMid", "")}\""
     }
 
     buildFeatures {

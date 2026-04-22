@@ -53,20 +53,20 @@ app/google-services.json.example
 
 ## SFMC Setup
 
-Open:
+Copy the example config:
 
-```text
-app/src/main/java/com/fcs/sfnewsapp/MyApp.kt
+```bash
+cp sfmc.properties.example sfmc.properties
 ```
 
-Replace these placeholders:
+Edit `sfmc.properties`:
 
-```kotlin
-const val SFMC_APP_ID = "YOUR_SFMC_APP_ID"
-const val SFMC_ACCESS_TOKEN = "YOUR_SFMC_ACCESS_TOKEN"
-const val FCM_SENDER_ID = "YOUR_FCM_SENDER_ID"
-const val SFMC_SERVER_URL = "https://YOUR_SUBDOMAIN.device.marketingcloudapis.com/"
-const val SFMC_MID = ""
+```properties
+sfmcAppId=YOUR_SFMC_APP_ID
+sfmcAccessToken=YOUR_SFMC_ACCESS_TOKEN
+fcmSenderId=YOUR_FCM_SENDER_ID
+sfmcServerUrl=https://YOUR_SUBDOMAIN.device.marketingcloudapis.com/
+sfmcMid=
 ```
 
 Use values from SFMC MobilePush:
@@ -78,6 +78,8 @@ Use values from SFMC MobilePush:
 - MID if your business unit requires it
 
 If `SFMC_MID` is blank, the app skips `setMid(...)`.
+
+`sfmc.properties` is ignored by Git. Gradle injects these values into `BuildConfig` during local builds. If this file is missing or still has placeholder values, SFMC initialization is skipped and Device Info will keep showing `Pending SFMC registration...`.
 
 ## Build and Run
 

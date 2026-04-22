@@ -6,3 +6,4 @@ local.properties
 .idea/
 app/google-services.json
 firebase/google-services.json
+sfmc.properties

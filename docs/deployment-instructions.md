@@ -20,13 +20,21 @@ firebase/google-services.json
 
 ## SFMC Setup
 
-Update SFMC values in `app/src/main/java/com/fcs/sfnewsapp/MyApp.kt`:
+Copy the SFMC config template:
+
+```bash
+cp sfmc.properties.example sfmc.properties
+```
+
+Update SFMC values in `sfmc.properties`:
 
 - App ID
 - Access Token
 - FCM sender ID
 - App endpoint
 - MID if required; blank means `setMid` is skipped
+
+Gradle injects these values into `BuildConfig`. If this file is missing or still contains placeholders, SFMC initialization is skipped and Device Info stays at `Pending SFMC registration...`.
 
 The Device Info page displays values needed for SFMC testing:
 
