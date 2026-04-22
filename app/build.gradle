@@ -1,0 +1,54 @@
+plugins {
+    id "com.android.application"
+    id "org.jetbrains.kotlin.android"
+    id "com.google.gms.google-services"
+}
+
+android {
+    namespace "com.fcs.sfnewsapp"
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.fcs.sfnewsapp"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+}
+
+dependencies {
+    implementation platform("com.google.firebase:firebase-bom:34.12.0")
+    implementation "com.google.firebase:firebase-analytics"
+    implementation "com.google.firebase:firebase-messaging"
+    implementation "com.salesforce.marketingcloud:marketingcloudsdk:8.2.0"
+
+    testImplementation "junit:junit:4.13.2"
+}
+
+def rootFirebaseConfig = rootProject.file("firebase/google-services.json")
+def appFirebaseConfig = project.file("google-services.json")
+
+tasks.matching { it.name =~ /process.*GoogleServices/ }.configureEach {
+    inputs.file(rootFirebaseConfig).optional()
+    doFirst {
+        if (rootFirebaseConfig.exists()) {
+            appFirebaseConfig.text = rootFirebaseConfig.text
+        }
+    }
+}
